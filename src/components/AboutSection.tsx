@@ -52,7 +52,7 @@ const AboutSection = () => {
         {/* Main about text */}
         <div className="space-y-12">
           <h2 className="about-text font-display text-4xl font-medium leading-relaxed text-foreground md:text-5xl lg:text-6xl">
-            I craft <span className="char-emerald">digital experiences</span> that blur the line
+          <span className="char-emerald">Welcome</span> to my portfolio, where I showcase projects that blur the line
             between art and technology.
           </h2>
 

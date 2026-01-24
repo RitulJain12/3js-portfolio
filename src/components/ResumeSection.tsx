@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { NavLink } from './NavLink';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ResumeSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const documentRef = useRef<HTMLDivElement>('https://ik.imagekit.io/rituls12/Rituljain%20Resume%20(1).pdf');
+  const documentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (documentRef.current && sectionRef.current) {

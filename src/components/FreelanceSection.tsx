@@ -5,20 +5,20 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
-  {
+  { 
     title: 'Web Development',
     description: 'Custom websites and web applications built with modern technologies.',
   },
   {
-    title: 'UI/UX Design',
-    description: 'User-centered design that balances aesthetics with functionality.',
+    title: 'Generative AI Integration',
+    description: 'Incorporating AI-driven features to enhance user experiences.',
   },
   {
     title: '3D & WebGL',
     description: 'Immersive 3D experiences and interactive visualizations.',
   },
   {
-    title: 'Consulting',
+    title: 'Technical Consulting',
     description: 'Technical guidance and architecture planning for your projects.',
   },
 ];
@@ -101,7 +101,7 @@ const FreelanceSection = () => {
                   <span className="font-body text-xs text-muted-foreground/40">0{i + 1}</span>
                 </div>
               </div>
-            ))}
+            ))} 
           </div>
         </div>
 
@@ -115,7 +115,7 @@ const FreelanceSection = () => {
             className="btn-minimal mt-6 inline-block px-10 py-4 text-base"
           >
             Start a Conversation
-          </a>
+          </a> 
         </div>
       </div>
     </section>
