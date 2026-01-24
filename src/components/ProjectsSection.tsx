@@ -6,44 +6,45 @@ gsap.registerPlugin(ScrollTrigger);
 
 // DUMMY PROJECTS - Replace with your actual projects
 const projects = [
-  {
-    id: 1,
-    title: 'Immersive Brand Experience',
-    description:
-      'A WebGL-powered product showcase featuring real-time 3D interactions and cinematic transitions.',
-    tags: ['Three.js', 'React', 'GSAP'],
-    year: '2024',
-    // Replace with actual image URL
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80',
-  },
-  {
-    id: 2,
-    title: 'E-Commerce Platform',
-    description:
-      'Full-stack marketplace with custom CMS, payment integration, and animated product galleries.',
-    tags: ['Next.js', 'Node.js', 'PostgreSQL'],
-    year: '2024',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-  },
-  {
-    id: 3,
-    title: 'Creative Agency Website',
-    description:
-      'Award-winning agency site with scroll-based storytelling and experimental typography.',
-    tags: ['React', 'Framer Motion', 'Tailwind'],
-    year: '2023',
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
-  },
-  {
-    id: 4,
-    title: 'AI-Powered Dashboard',
-    description:
-      'Data visualization platform with real-time analytics and machine learning predictions.',
-    tags: ['TypeScript', 'Python', 'D3.js'],
-    year: '2023',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-  },
-];
+    {
+      id: 1,
+      title: 'Astra Ai',
+      description: 'Astraa AI is a smart, retrieval-augmented AI system designed to deliver accurate, context-aware, and reliable responses by combining the power of LangChain, RAG (Retrieval-Augmented Generation), and a Vector Database.',
+      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20185609.png',
+      tags: ['React', 'Node', 'Langchain','Express','Langgraph','Langsmith'],
+      year: '2024'
+    },
+    {
+      id: 2,
+      title: 'NeatCode',
+      description: 'NeatCode is a scalable LeetCode-style coding platform enhanced with AI assistance, designed to help developers practice DSA, solve problems efficiently, and get intelligent guidance, hints, and explanations in real time all in a fast, production ready environment.',
+      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20190655.png',
+      tags: ['React', 'Node', 'Langchain','Express','Mongodb','judge 0'],
+      year: '2024'
+    },
+    {
+      id: 3,
+      title: 'Unir',
+      description: 'Unir is a scalable LinkedIn-style professional networking application enhanced with AI-driven features that help users grow their careers smarter and faster. It enables professionals to connect, share posts, showcase skills, and leverage AI to improve visibility, resumes, and engagement.',
+      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20191000.png',
+      tags: ['React', 'Node', 'Langchain','Express','Mongodb', 'Langgraph','Spring','webRtc','socket'],
+      year: '2026'
+    },
+    {
+      id: 4,
+      title: 'OnCart',
+      description: 'OnCart is a scalable e-commerce application built on a microservices architecture, enhanced with AI-driven semantic product search. Instead of traditional keyword-based search, OnCart understands user intent and product meaning, delivering faster and more relevant shopping results.',
+      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20191552.png',
+      tags: ['React', 'Node', 'Langchain','Express','Mongodb', 'Langgraph','socket'],
+      year: '2025'
+    }
+  ];
+
+
+
+
+
+
 
 const ProjectsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -117,7 +118,7 @@ const ProjectsSection = () => {
                     />
                     <div className="absolute inset-0 bg-background/20" />
                   </div>
-                </div>
+                </div> 
 
                 {/* Content */}
                 <div className="flex flex-1 flex-col justify-center lg:px-12">
