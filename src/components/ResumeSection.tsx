@@ -33,10 +33,10 @@ const ResumeSection = () => {
     // DUMMY: Replace with actual resume file URL
     // For now, this creates a placeholder download
     const link = document.createElement('a');
-    link.href = '#'; // Replace with: '/resume.pdf' or your actual resume URL
-    link.download = 'Ritul_Jain_Resume.pdf';
-    // link.click();
-    alert('Replace this with your actual resume file path');
+    link.href = 'https://ik.imagekit.io/rituls12/Rituljain%20Resume%20(1).pdf'; // Replace with: '/resume.pdf' or your actual resume URL
+    link.download = 'Rituljain Resume (1).pdf';
+     link.click();
+   
   };
 
   return (
@@ -113,7 +113,7 @@ const ResumeSection = () => {
 
         <p className="mt-6 font-body text-xs text-muted-foreground/50">
           {/* DUMMY: Update with your actual info */}
-          Last updated: January 2024 • PDF Format
+          Last updated: January 2026 • PDF Format
         </p>
       </div>
     </section>
