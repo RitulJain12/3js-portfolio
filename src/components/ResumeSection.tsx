@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ResumeSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const documentRef = useRef<HTMLDivElement>(null);
+  const documentRef = useRef<HTMLDivElement>('https://ik.imagekit.io/rituls12/Rituljain%20Resume%20(1).pdf');
 
   useEffect(() => {
     if (documentRef.current && sectionRef.current) {
