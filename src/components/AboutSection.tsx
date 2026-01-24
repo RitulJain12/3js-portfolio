@@ -58,24 +58,20 @@ const AboutSection = () => {
 
           <p className="about-text font-body text-lg leading-relaxed text-foreground/70 md:text-xl">
             {/* DUMMY CONTENT - Replace with your actual bio */}
-            A creative developer based in [Your City], specializing in immersive web experiences,
-            3D interactions, and experimental interfaces. With a background in both design and
-            engineering, I bring a unique perspective to every project.
+            A creative full-stack developer based in Bhopal, specializing in MERN stack applications, generative AI integrations, and immersive, interactive web experiences. Currently in my pre-final year, I combine strong engineering fundamentals with modern AI-driven workflows to build scalable, high-impact digital products.
           </p>
 
           <p className="about-text font-body text-lg leading-relaxed text-foreground/70 md:text-xl">
             {/* DUMMY CONTENT - Replace with your actual experience */}
-            Over the past [X] years, I've had the privilege of working with startups, agencies,
-            and established brands to create memorable digital products that push creative
-            boundaries while maintaining exceptional user experience.
+            With a deep interest in 3D interactions, experimental interfaces, and intelligent systems, I focus on turning complex ideas into clean, performant, and engaging user experiences.
           </p>
 
           {/* Stats */}
           <div className="about-text grid grid-cols-2 gap-8 pt-12 md:grid-cols-4">
             {[
-              { value: '5+', label: 'Years Experience' },
+              { value: '1+', label: 'Years Experience' },
               { value: '50+', label: 'Projects Completed' },
-              { value: '30+', label: 'Happy Clients' },
+              { value: '10+', label: 'Happy Clients' },
               { value: '∞', label: 'Cups of Coffee' },
             ].map((stat, i) => (
               <div key={i} className="text-center md:text-left">

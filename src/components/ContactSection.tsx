@@ -15,7 +15,11 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
+  const SocialLinks ={
+    GitHub: "https://github.com/singhsanket143/API_Gateway",
+    LinkedIn: "https://www.linkedin.com/in/sanket-singh-143/",
+    Instagram: "https://www.instagram.com/sanket143/"
+  }
   useEffect(() => {
     if (formRef.current && sectionRef.current) {
       const elements = formRef.current.querySelectorAll('.form-element');
@@ -191,7 +195,7 @@ const ContactSection = () => {
                     strokeWidth={1.5}
                     d="M5 13l4 4L19 7"
                   />
-                </svg>
+                </svg> 
               </div>
               <h3 className="font-display text-2xl text-foreground">Message Sent!</h3>
               <p className="mt-2 font-body text-foreground/60">
@@ -204,12 +208,12 @@ const ContactSection = () => {
         {/* Footer links */}
         <div className="mt-24 border-t border-foreground/10 pt-12">
           <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-            <div className="flex gap-8">
+            <div className="flex gap-8"> 
               {/* DUMMY: Replace with your actual social links */}
-              {['GitHub', 'LinkedIn', 'Twitter', 'Dribbble'].map((social) => (
+              {['GitHub', 'LinkedIn', 'Instagram'].map((social) => (
                 <a
                   key={social}
-                  href="#"
+                  href={SocialLinks[social as keyof typeof SocialLinks]}
                   className="font-body text-sm text-foreground/50 transition-colors duration-300 hover:text-foreground"
                 >
                   {social}
@@ -217,7 +221,7 @@ const ContactSection = () => {
               ))}
             </div>
             <p className="font-body text-xs text-foreground/30">
-              © 2024 Ritul Jain. All rights reserved.
+              © 2026 Ritul Jain. All rights reserved.
             </p>
           </div>
         </div>
