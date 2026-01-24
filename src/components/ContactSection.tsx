@@ -16,9 +16,9 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const SocialLinks ={
-    GitHub: "https://github.com/singhsanket143/API_Gateway",
-    LinkedIn: "https://www.linkedin.com/in/sanket-singh-143/",
-    Instagram: "https://www.instagram.com/sanket143/"
+    GitHub: "https://github.com/RitulJain12",
+    LinkedIn: "https://www.linkedin.com/in/ritul-jain-5326bb303",
+    Instagram: "https://www.instagram.com/ritul05_?utm_source=qr&igsh=MThidzY1d2M3dTM4bg%3D%3D"
   }
   useEffect(() => {
     if (formRef.current && sectionRef.current) {
