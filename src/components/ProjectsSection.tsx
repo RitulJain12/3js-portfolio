@@ -109,16 +109,16 @@ const ProjectsSection = () => {
                 }`}
               >
                 {/* Image */}
-                <div className="relative flex-1 overflow-hidden rounded-sm">
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-background/20" />
-                  </div>
-                </div> 
+                <div className="relative flex-1 overflow-hidden rounded-sm group">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/20" />
+                    </div>
+                    </div>
 
                 {/* Content */}
                 <div className="flex flex-1 flex-col justify-center lg:px-12">
