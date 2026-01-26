@@ -47,11 +47,10 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Backend & database handled separately
-    // POST request to dummy API endpoint
+ 
     try {
-      // Replace with your actual API endpoint
-      await fetch('/api/contact', {
+    
+  const  response=  await fetch('https://portfolio-backend-0coc.onrender.com/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,9 +58,12 @@ const ContactSection = () => {
         body: JSON.stringify(formData),
       });
 
-      // For demo purposes, simulate success after delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const data = await response.json()
 
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong")
+      }
+      
       setIsSuccess(true);
       setFormData({ name: '', email: '', message: '' });
 
@@ -156,7 +158,7 @@ const ContactSection = () => {
                     viewBox="0 0 24 24"
                   >
                     <circle
-                      className="opacity-25"
+                      className="opacity-25" 
                       cx="12"
                       cy="12"
                       r="10"
