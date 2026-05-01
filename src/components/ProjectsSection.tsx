@@ -10,7 +10,7 @@ const projects = [
       id: 1,
       title: 'Astra Ai',
       description: 'Astraa AI is a smart, retrieval-augmented AI system designed to deliver accurate, context-aware, and reliable responses by combining the power of LangChain, RAG (Retrieval-Augmented Generation), and a Vector Database.',
-      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20185609.png',
+      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-05-01%20184158.png',
       tags: ['React', 'Node', 'Langchain','Express','Langgraph','Langsmith'],
         link:"https://gpt-advnc-kdmx.onrender.com/",
       year: '2024'
