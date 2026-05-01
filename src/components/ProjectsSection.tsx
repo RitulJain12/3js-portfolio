@@ -12,6 +12,7 @@ const projects = [
       description: 'Astraa AI is a smart, retrieval-augmented AI system designed to deliver accurate, context-aware, and reliable responses by combining the power of LangChain, RAG (Retrieval-Augmented Generation), and a Vector Database.',
       image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20185609.png',
       tags: ['React', 'Node', 'Langchain','Express','Langgraph','Langsmith'],
+        link:"https://gpt-advnc-kdmx.onrender.com/",
       year: '2024'
     },
     {
@@ -20,6 +21,7 @@ const projects = [
       description: 'NeatCode is a scalable LeetCode-style coding platform enhanced with AI assistance, designed to help developers practice DSA, solve problems efficiently, and get intelligent guidance, hints, and explanations in real time all in a fast, production ready environment.',
       image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20190655.png',
       tags: ['React', 'Node', 'Langchain','Express','Mongodb','judge 0'],
+          link:"#microservice",
       year: '2024'
     },
     {
@@ -28,6 +30,7 @@ const projects = [
       description: 'Unir is a scalable LinkedIn-style professional networking application enhanced with AI-driven features that help users grow their careers smarter and faster. It enables professionals to connect, share posts, showcase skills, and leverage AI to improve visibility, resumes, and engagement.',
       image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20191000.png',
       tags: ['React', 'Node', 'Langchain','Express','Mongodb', 'Langgraph','Spring','webRtc','socket'],
+         link:"#microservice",
       year: '2026'
     },
     {
@@ -36,6 +39,7 @@ const projects = [
       description: 'OnCart is a scalable e-commerce application built on a microservices architecture, enhanced with AI-driven semantic product search. Instead of traditional keyword-based search, OnCart understands user intent and product meaning, delivering faster and more relevant shopping results.',
       image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20191552.png',
       tags: ['React', 'Node', 'Langchain','Express','Mongodb', 'Langgraph','socket'],
+         link:"#microservice",
       year: '2025'
     }
   ];
@@ -141,7 +145,14 @@ const ProjectsSection = () => {
                     ))}
                   </div>
 
-                  <button className="btn-minimal mt-8 self-start">View Project</button>
+                                                          <a
+                                      href={project.link}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="btn-minimal mt-8 self-start"
+                                    >
+                                      View Project
+                                    </a>
                 </div>
               </div>
             </div>
