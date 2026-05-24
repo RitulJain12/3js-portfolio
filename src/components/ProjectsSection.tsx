@@ -10,8 +10,9 @@ const projects = [
       id: 1,
       title: 'Astra Ai',
       description: 'Astraa AI is a smart, retrieval-augmented AI system designed to deliver accurate, context-aware, and reliable responses by combining the power of LangChain, RAG (Retrieval-Augmented Generation), and a Vector Database.',
-      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20185609.png',
+      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-05-01%20184158.png',
       tags: ['React', 'Node', 'Langchain','Express','Langgraph','Langsmith'],
+<<<<<<< HEAD
       year: '2024',
       liveDemo: 'https://gpt-advnc-kdmx.onrender.com',
       githubLink: 'https://github.com/RitulJain12/GPT_advnc'
@@ -25,17 +26,47 @@ const projects = [
       year: '2024',
       liveDemo: 'https://evgenee-hackathon.onrender.com/',
       githubLink: 'https://github.com/RitulJain12/EvGenee_Hackathon'
+=======
+        link:"https://gpt-advnc-kdmx.onrender.com/",
+      year: '2024'
+    },
+    {
+      id: 2,
+      title: 'NeatCode',
+      description: 'NeatCode is a scalable LeetCode-style coding platform enhanced with AI assistance, designed to help developers practice DSA, solve problems efficiently, and get intelligent guidance, hints, and explanations in real time all in a fast, production ready environment.',
+      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20190655.png',
+      tags: ['React', 'Node', 'Langchain','Express','Mongodb','judge 0'],
+          link:"#microservice",
+      year: '2024'
+    },
+    {
+      id: 3,
+      title: 'Unir',
+      description: 'Unir is a scalable LinkedIn-style professional networking application enhanced with AI-driven features that help users grow their careers smarter and faster. It enables professionals to connect, share posts, showcase skills, and leverage AI to improve visibility, resumes, and engagement.',
+      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20191000.png',
+      tags: ['React', 'Node', 'Langchain','Express','Mongodb', 'Langgraph','Spring','webRtc','socket'],
+         link:"#microservice",
+      year: '2026'
+>>>>>>> daaa8c56405aa46807d669f9c735c18e1a826b9d
     },
 
     {
       id: 4,
       title: 'OnCart',
+<<<<<<< HEAD
       description: 'OnCart is a comprehensive e-commerce platform built on a robust microservices architecture using RabbitMQ and an API Gateway. It features dedicated services for Auth, Orders, Cart, Payments, Notifications, and a Seller Dashboard. Enhanced with an \'AI Buddy\', it allows users to add products to their cart using natural language processing (NLP), recommends products based on user dwell time, and offers a premium subscription for discovering the lowest deals.',
       image: 'https://api.microlink.io/?url=https://onkart-microservice.onrender.com&screenshot=true&meta=false&embed=screenshot.url',
       tags: ['Microservices', 'RabbitMQ', 'API Gateway', 'NLP', 'React', 'Node'],
       year: '2025',
       liveDemo: 'https://onkart-microservice.onrender.com',
       githubLink: 'https://github.com/RitulJain12/Microservice_mega'
+=======
+      description: 'OnCart is a scalable e-commerce application built on a microservices architecture, enhanced with AI-driven semantic product search. Instead of traditional keyword-based search, OnCart understands user intent and product meaning, delivering faster and more relevant shopping results.',
+      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20191552.png',
+      tags: ['React', 'Node', 'Langchain','Express','Mongodb', 'Langgraph','socket'],
+         link:"#microservice",
+      year: '2025'
+>>>>>>> daaa8c56405aa46807d669f9c735c18e1a826b9d
     }
   ];
 
@@ -140,6 +171,7 @@ const ProjectsSection = () => {
                     ))}
                   </div>
 
+<<<<<<< HEAD
                   <div className="mt-8 flex gap-4">
                     {project.liveDemo && (
                       <a 
@@ -164,6 +196,16 @@ const ProjectsSection = () => {
                       <button className="btn-minimal">View Project</button>
                     )}
                   </div>
+=======
+                                                          <a
+                                      href={project.link}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="btn-minimal mt-8 self-start"
+                                    >
+                                      View Project
+                                    </a>
+>>>>>>> daaa8c56405aa46807d669f9c735c18e1a826b9d
                 </div>
               </div>
             </div>
