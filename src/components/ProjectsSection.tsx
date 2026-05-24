@@ -12,31 +12,30 @@ const projects = [
       description: 'Astraa AI is a smart, retrieval-augmented AI system designed to deliver accurate, context-aware, and reliable responses by combining the power of LangChain, RAG (Retrieval-Augmented Generation), and a Vector Database.',
       image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20185609.png',
       tags: ['React', 'Node', 'Langchain','Express','Langgraph','Langsmith'],
-      year: '2024'
+      year: '2024',
+      liveDemo: 'https://gpt-advnc-kdmx.onrender.com',
+      githubLink: 'https://github.com/RitulJain12/GPT_advnc'
     },
     {
       id: 2,
-      title: 'NeatCode',
-      description: 'NeatCode is a scalable LeetCode-style coding platform enhanced with AI assistance, designed to help developers practice DSA, solve problems efficiently, and get intelligent guidance, hints, and explanations in real time all in a fast, production ready environment.',
-      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20190655.png',
-      tags: ['React', 'Node', 'Langchain','Express','Mongodb','judge 0'],
-      year: '2024'
+      title: 'EvGenee',
+      description: 'EvGenee is an intelligent EV slot booking platform featuring an integrated AI voice agent. It allows users to book high-speed charging slots hands-free while speaking with the AI, save their fleet details, check station availability on their own, and dispatch emergency roadside SOS when stranded.',
+      image: 'https://api.microlink.io/?url=https://evgenee-hackathon.onrender.com/&screenshot=true&meta=false&embed=screenshot.url',
+      tags: ['React', 'Node', 'AI Voice', 'Express', 'MongoDB'],
+      year: '2024',
+      liveDemo: 'https://evgenee-hackathon.onrender.com/',
+      githubLink: 'https://github.com/RitulJain12/EvGenee_Hackathon'
     },
-    {
-      id: 3,
-      title: 'Unir',
-      description: 'Unir is a scalable LinkedIn-style professional networking application enhanced with AI-driven features that help users grow their careers smarter and faster. It enables professionals to connect, share posts, showcase skills, and leverage AI to improve visibility, resumes, and engagement.',
-      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20191000.png',
-      tags: ['React', 'Node', 'Langchain','Express','Mongodb', 'Langgraph','Spring','webRtc','socket'],
-      year: '2026'
-    },
+
     {
       id: 4,
       title: 'OnCart',
-      description: 'OnCart is a scalable e-commerce application built on a microservices architecture, enhanced with AI-driven semantic product search. Instead of traditional keyword-based search, OnCart understands user intent and product meaning, delivering faster and more relevant shopping results.',
-      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20191552.png',
-      tags: ['React', 'Node', 'Langchain','Express','Mongodb', 'Langgraph','socket'],
-      year: '2025'
+      description: 'OnCart is a comprehensive e-commerce platform built on a robust microservices architecture using RabbitMQ and an API Gateway. It features dedicated services for Auth, Orders, Cart, Payments, Notifications, and a Seller Dashboard. Enhanced with an \'AI Buddy\', it allows users to add products to their cart using natural language processing (NLP), recommends products based on user dwell time, and offers a premium subscription for discovering the lowest deals.',
+      image: 'https://api.microlink.io/?url=https://onkart-microservice.onrender.com&screenshot=true&meta=false&embed=screenshot.url',
+      tags: ['Microservices', 'RabbitMQ', 'API Gateway', 'NLP', 'React', 'Node'],
+      year: '2025',
+      liveDemo: 'https://onkart-microservice.onrender.com',
+      githubLink: 'https://github.com/RitulJain12/Microservice_mega'
     }
   ];
 
@@ -141,7 +140,30 @@ const ProjectsSection = () => {
                     ))}
                   </div>
 
-                  <button className="btn-minimal mt-8 self-start">View Project</button>
+                  <div className="mt-8 flex gap-4">
+                    {project.liveDemo && (
+                      <a 
+                        href={project.liveDemo} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="btn-minimal"
+                      >
+                        Live Demo
+                      </a>
+                    )}
+                    {project.githubLink ? (
+                      <a 
+                        href={project.githubLink} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="btn-minimal"
+                      >
+                        View Project
+                      </a>
+                    ) : (
+                      <button className="btn-minimal">View Project</button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

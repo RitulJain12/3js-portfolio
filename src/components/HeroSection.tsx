@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 interface HeroSectionProps {
@@ -28,9 +28,38 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
     }
   }, []);
 
-  // Fade out on scroll
-  const opacity = Math.max(0, 1 - scrollProgress * 3);
-  const translateY = scrollProgress * -100;
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Fade out slightly, but don't move up.
+  const opacity = Math.max(0.1, 1 - scrollProgress * 2);
+  const translateY = 0;
+
+  const getCharTransform = (wordIndex: number, charIndex: number) => {
+    const wordLength = wordIndex === 0 ? firstName.length : lastName.length;
+    
+    let delayIndex: number;
+    let direction: number;
+    
+    if (wordIndex === 0) {
+      // 'Ritul' moves Right. Rightmost letter moves first to avoid overlap.
+      delayIndex = wordLength - 1 - charIndex;
+      direction = 1;
+    } else {
+      // 'Jain' moves Left. Leftmost letter moves first to avoid overlap.
+      delayIndex = charIndex;
+      direction = -1;
+    }
+    
+    const delayPixels = delayIndex * 30; // 30px scroll delay per letter
+    const activeScroll = Math.max(0, scrollY - delayPixels);
+    return activeScroll * 8 * direction; // Very fast movement
+  };
 
   // Name with specific emerald characters
   const firstName = 'Ritul';
@@ -56,7 +85,7 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
               className={`char text-7xl md:text-9xl lg:text-[11rem] font-medium tracking-tight ${
                 emeraldIndices.first.includes(i) ? 'char-emerald' : 'text-foreground'
               }`}
-              style={{ display: 'inline-block' }}
+              style={{ display: 'inline-block', transform: `translateX(${getCharTransform(0, i)}px)` }}
             >
               {char}
             </span>
@@ -69,7 +98,7 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
               className={`char text-7xl md:text-9xl lg:text-[11rem] font-medium tracking-tight ${
                 emeraldIndices.last.includes(i) ? 'char-emerald' : 'text-foreground'
               }`}
-              style={{ display: 'inline-block' }}
+              style={{ display: 'inline-block', transform: `translateX(${getCharTransform(1, i)}px)` }}
             >
               {char}
             </span>
