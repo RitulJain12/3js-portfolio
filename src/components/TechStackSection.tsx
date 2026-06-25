@@ -6,7 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const technologies = [
   { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-  // { name: 'Three.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg' },
   { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
   { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
   { name: 'Tailwind', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg' },
@@ -14,10 +13,19 @@ const technologies = [
   { name: 'HTML', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
   { name: 'CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
   { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
-  { name: 'Express', icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSqvipngGcAC-YrGh2tfHLn9N3nImmq14Jyg&s' },
+  { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', invert: true },
   { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
   { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-  
+  { name: 'LangChain', icon: 'https://avatars.githubusercontent.com/u/126733545?v=4' },
+  { name: 'LangGraph', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg' },
+  { name: 'Kubernetes', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg' },
+  { name: 'Microservices', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg' },
+  { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+  { name: 'AWS', icon: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg', invert: true },
+  { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+  { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'HLD', icon: 'https://img.icons8.com/ios-filled/100/000000/network.png', invert: true },
+  { name: 'LLD', icon: 'https://img.icons8.com/ios-filled/100/000000/flow-chart.png', invert: true },
 ];
 
 const TechStackSection = () => {
@@ -85,8 +93,11 @@ const TechStackSection = () => {
 
           {/* Tech icons positioned in circle */}
           {technologies.map((tech, i) => {
-            const angle = (i / technologies.length) * Math.PI * 2 - Math.PI / 2;
-            const radius = 46; // percentage from center
+            const isOuter = i % 2 === 0;
+            const radius = isOuter ? 48 : 28; // Outer and inner rings
+            // Offset the inner ring slightly to interleave
+            const angleOffset = isOuter ? 0 : Math.PI / technologies.length;
+            const angle = (i / technologies.length) * Math.PI * 2 - Math.PI / 2 + angleOffset;
             const x = 50 + Math.cos(angle) * radius;
             const y = 50 + Math.sin(angle) * radius;
 
@@ -102,7 +113,7 @@ const TechStackSection = () => {
                     src={tech.icon}
                     alt={tech.name}
                     className="h-8 w-8 object-contain transition-transform duration-300 group-hover:scale-110 md:h-10 md:w-10"
-                  
+                    style={{ filter: tech.invert ? 'invert(1) brightness(2)' : 'none' }}
                   />
                 </div>
 
