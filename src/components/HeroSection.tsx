@@ -14,15 +14,15 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
       const chars = nameRef.current.querySelectorAll('.char');
       gsap.fromTo(
         chars,
-        { opacity: 0, y: 100, rotateX: -90 },
+        { opacity: 0, filter: 'blur(24px)', scale: 1.1 },
         {
           opacity: 1,
-          y: 0,
-          rotateX: 0,
+          filter: 'blur(0px)',
+          scale: 1,
           duration: 1.2,
           stagger: 0.05,
-          ease: 'power4.out',
-          delay: 0.5,
+          ease: 'power3.out',
+          delay: 0.1,
         }
       );
     }
@@ -41,24 +41,34 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
   const translateY = 0;
 
   const getCharTransform = (wordIndex: number, charIndex: number) => {
+    // Pseudo-random factors for beautiful chaotic scatter
+    const seed = wordIndex * 10 + charIndex;
+    const randomY = Math.sin(seed * 1.5) * 4; 
+    const randomRotate = Math.cos(seed * 2.3) * 1.5; 
+    const randomScale = Math.sin(seed * 3.1) * 0.02; 
+
     const wordLength = wordIndex === 0 ? firstName.length : lastName.length;
     
     let delayIndex: number;
     let direction: number;
     
     if (wordIndex === 0) {
-      // 'Ritul' moves Right. Rightmost letter moves first to avoid overlap.
       delayIndex = wordLength - 1 - charIndex;
       direction = 1;
     } else {
-      // 'Jain' moves Left. Leftmost letter moves first to avoid overlap.
       delayIndex = charIndex;
       direction = -1;
     }
     
-    const delayPixels = delayIndex * 30; // 30px scroll delay per letter
+    const delayPixels = delayIndex * 30; 
     const activeScroll = Math.max(0, scrollY - delayPixels);
-    return activeScroll * 8 * direction; // Very fast movement
+    
+    const moveX = activeScroll * 6 * direction;
+    const moveY = activeScroll * randomY;
+    const rotate = activeScroll * randomRotate;
+    const scale = Math.max(0.2, 1 - activeScroll * 0.002) + (activeScroll * randomScale);
+    
+    return `translate(${moveX}px, ${moveY}px) rotate(${rotate}deg) scale(${scale})`;
   };
 
   // Name with specific emerald characters
@@ -82,10 +92,10 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
           {firstName.split('').map((char, i) => (
             <span
               key={`first-${i}`}
-              className={`char text-7xl md:text-9xl lg:text-[11rem] font-medium tracking-tight ${
+              className={`char text-7xl md:text-9xl lg:text-[11rem] font-normal tracking-wide ${
                 emeraldIndices.first.includes(i) ? 'char-emerald' : 'text-foreground'
               }`}
-              style={{ display: 'inline-block', transform: `translateX(${getCharTransform(0, i)}px)` }}
+              style={{ display: 'inline-block', transform: getCharTransform(0, i) }}
             >
               {char}
             </span>
@@ -95,10 +105,10 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
           {lastName.split('').map((char, i) => (
             <span
               key={`last-${i}`}
-              className={`char text-7xl md:text-9xl lg:text-[11rem] font-medium tracking-tight ${
+              className={`char text-7xl md:text-9xl lg:text-[11rem] font-normal tracking-wide ${
                 emeraldIndices.last.includes(i) ? 'char-emerald' : 'text-foreground'
               }`}
-              style={{ display: 'inline-block', transform: `translateX(${getCharTransform(1, i)}px)` }}
+              style={{ display: 'inline-block', transform: getCharTransform(1, i) }}
             >
               {char}
             </span>
