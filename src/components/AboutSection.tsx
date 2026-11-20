@@ -9,27 +9,29 @@ const AboutSection = () => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (contentRef.current && sectionRef.current) {
-      const elements = contentRef.current.querySelectorAll('.about-text');
+    const ctx = gsap.context(() => {
+      const elements = contentRef.current?.querySelectorAll('.about-text');
+      if (!elements?.length) return;
 
       gsap.fromTo(
         elements,
-        { opacity: 0, y: 60 },
+        { opacity: 0, y: 48 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          stagger: 0.2,
+          duration: 0.8,
+          stagger: 0.12,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 70%',
-            end: 'center center',
+            start: 'top 80%',
             toggleActions: 'play none none none',
           },
         }
       );
-    }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (

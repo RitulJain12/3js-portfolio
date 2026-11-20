@@ -28,26 +28,37 @@ const FreelanceSection = () => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (contentRef.current && sectionRef.current) {
-      const elements = contentRef.current.querySelectorAll('.freelance-item');
+    const ctx = gsap.context(() => {
+      const elements = contentRef.current?.querySelectorAll('.freelance-item');
+      if (!elements?.length) return;
 
-      gsap.fromTo(
-        elements,
-        { opacity: 0, x: -50 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 60%',
-            toggleActions: 'play none none reverse',
+      elements.forEach((item, i) => {
+        gsap.set(item, { transformStyle: 'preserve-3d' });
+        gsap.fromTo(
+          item,
+          {
+            opacity: 0,
+            y: 100,
+            rotateY: i % 2 === 0 ? -15 : 15,
           },
-        }
-      );
-    }
+          {
+            opacity: 1,
+            y: 0,
+            rotateY: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: item,
+              start: 'top 80%',
+              end: 'top 40%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -55,7 +66,7 @@ const FreelanceSection = () => {
       ref={sectionRef}
       className="relative z-20 min-h-screen px-6 py-32 md:px-12 lg:px-24"
     >
-      <div ref={contentRef} className="mx-auto max-w-5xl">
+      <div ref={contentRef} className="mx-auto max-w-5xl" style={{ perspective: '1500px' }}>
         {/* Section header */}
         <div className="mb-16">
           <span className="font-body text-xs tracking-[0.5em] text-muted-foreground/50">

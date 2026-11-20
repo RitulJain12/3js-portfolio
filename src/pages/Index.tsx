@@ -33,20 +33,23 @@ const Index = () => {
     }
   }, [isLoading]);
 
-  // Prevent scroll during loading
+  // Hold scroll while the hero letters assemble, then measure triggers on the real layout
   useEffect(() => {
     if (isLoading) {
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'hidden';
-      const timer = setTimeout(() => {
-        document.body.style.overflow = '';
-      }, 2000); // Wait for classy hero characters to assemble
-      return () => {
-        clearTimeout(timer);
-        document.body.style.overflow = '';
-      };
+      return;
     }
+
+    document.body.style.overflow = 'hidden';
+    const timer = window.setTimeout(() => {
+      document.body.style.overflow = '';
+      ScrollTrigger.refresh();
+    }, 1200);
+
+    return () => {
+      window.clearTimeout(timer);
+      document.body.style.overflow = '';
+    };
   }, [isLoading]);
 
   return (
@@ -61,7 +64,7 @@ const Index = () => {
       {!isLoading && (
         <div className="relative">
           {/* Hero - Fixed position, fades on scroll */}
-          <HeroSection scrollProgress={scrollProgress} />
+          <HeroSection />
 
           {/* Scrollable content */}
           <main>

@@ -33,27 +33,29 @@ const TechStackSection = () => {
   const circleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (circleRef.current && sectionRef.current) {
-      const items = circleRef.current.querySelectorAll('.tech-item');
+    const ctx = gsap.context(() => {
+      const items = circleRef.current?.querySelectorAll('.tech-item');
+      if (!items?.length) return;
 
-      // Animate items on scroll
       gsap.fromTo(
         items,
-        { opacity: 0, scale: 0 },
+        { opacity: 0, scale: 0.6 },
         {
           opacity: 1,
           scale: 1,
-          duration: 0.8,
-          stagger: 0.08,
-          ease: 'back.out(1.7)',
+          duration: 0.55,
+          stagger: 0.035,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 60%',
-            toggleActions: 'play none none reverse',
+            start: 'top 75%',
+            toggleActions: 'play none none none',
           },
         }
       );
-    }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -82,7 +84,7 @@ const TechStackSection = () => {
         {/* Circular tech icons */}
         <div
           ref={circleRef}
-          className="relative mx-auto mt-16 h-[400px] w-[400px] md:h-[500px] md:w-[500px] lg:h-[550px] lg:w-[550px]"
+          className="relative mx-auto mt-16 aspect-square w-[min(88vw,400px)] md:w-[500px] lg:w-[550px]"
         >
           {/* Outer ring */}
           <div className="absolute inset-0 rounded-full border border-muted/20" />

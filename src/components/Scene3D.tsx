@@ -126,9 +126,9 @@ const CameraController = ({ scrollProgress }: { scrollProgress: number }) => {
     const targetY = scrollProgress * 5;
     const targetX = Math.sin(scrollProgress * Math.PI) * 5;
 
-    camera.position.x += (targetX - camera.position.x) * 0.05;
-    camera.position.y += (targetY - camera.position.y) * 0.05;
-    camera.position.z += (targetZ - camera.position.z) * 0.05;
+    camera.position.x += (targetX - camera.position.x) * 0.12;
+    camera.position.y += (targetY - camera.position.y) * 0.12;
+    camera.position.z += (targetZ - camera.position.z) * 0.12;
 
     camera.lookAt(0, scrollProgress * 3, -10);
   });

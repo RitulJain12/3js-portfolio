@@ -1,73 +1,45 @@
 import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
 
-interface HeroSectionProps {
-  scrollProgress: number;
-}
-
-const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
+const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLDivElement>(null);
+  const [heroProgress, setHeroProgress] = useState(0);
 
   useEffect(() => {
-    if (nameRef.current) {
-      const chars = nameRef.current.querySelectorAll('.char');
-      gsap.fromTo(
-        chars,
-        { opacity: 0, filter: 'blur(24px)', scale: 1.1 },
-        {
-          opacity: 1,
-          filter: 'blur(0px)',
-          scale: 1,
-          duration: 1.2,
-          stagger: 0.05,
-          ease: 'power3.out',
-          delay: 0.1,
-        }
-      );
-    }
-  }, []);
+    const handleScroll = () => {
+      const viewport = window.innerHeight || 1;
+      const progress = window.scrollY / viewport;
+      setHeroProgress(Math.min(Math.max(progress, 0), 1));
+    };
 
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
-  // Fade out slightly, but don't move up.
-  const opacity = Math.max(0.1, 1 - scrollProgress * 2);
-  const translateY = 0;
+  // The name lives in the first screen, then clears before the next section.
+  const opacity = 1 - heroProgress;
 
   const getCharTransform = (wordIndex: number, charIndex: number) => {
-    // Pseudo-random factors for beautiful chaotic scatter
     const seed = wordIndex * 10 + charIndex;
-    const randomY = Math.sin(seed * 1.5) * 4; 
-    const randomRotate = Math.cos(seed * 2.3) * 1.5; 
-    const randomScale = Math.sin(seed * 3.1) * 0.02; 
+    const randomY = Math.sin(seed * 1.5);
+    const randomRotate = Math.cos(seed * 2.3);
 
     const wordLength = wordIndex === 0 ? firstName.length : lastName.length;
-    
-    let delayIndex: number;
-    let direction: number;
-    
-    if (wordIndex === 0) {
-      delayIndex = wordLength - 1 - charIndex;
-      direction = 1;
-    } else {
-      delayIndex = charIndex;
-      direction = -1;
-    }
-    
-    const delayPixels = delayIndex * 30; 
-    const activeScroll = Math.max(0, scrollY - delayPixels);
-    
-    const moveX = activeScroll * 6 * direction;
-    const moveY = activeScroll * randomY;
-    const rotate = activeScroll * randomRotate;
-    const scale = Math.max(0.2, 1 - activeScroll * 0.002) + (activeScroll * randomScale);
-    
+    const delayIndex = wordIndex === 0 ? wordLength - 1 - charIndex : charIndex;
+    const direction = wordIndex === 0 ? 1 : -1;
+    const spread = Math.min(1, Math.max(0, (heroProgress - delayIndex * 0.05) / 0.75));
+
+    const moveX = spread * 72 * direction;
+    const moveY = spread * randomY * 28;
+    const rotate = spread * randomRotate * 12;
+    const scale = 1 - spread * 0.2;
+
     return `translate(${moveX}px, ${moveY}px) rotate(${rotate}deg) scale(${scale})`;
   };
 
@@ -80,7 +52,7 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
     <section
       ref={containerRef}
       className="pointer-events-none fixed inset-0 z-10 flex flex-col items-center justify-center"
-      style={{ opacity, transform: `translateY(${translateY}px)` }}
+      style={{ opacity, visibility: heroProgress >= 1 ? 'hidden' : 'visible' }}
     >
       {/* Main name */}
       <div
@@ -92,10 +64,10 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
           {firstName.split('').map((char, i) => (
             <span
               key={`first-${i}`}
-              className={`char text-7xl md:text-9xl lg:text-[11rem] font-normal tracking-wide ${
+              className={`char char-assemble text-7xl md:text-9xl lg:text-[11rem] font-normal tracking-wide ${
                 emeraldIndices.first.includes(i) ? 'char-emerald' : 'text-foreground'
               }`}
-              style={{ display: 'inline-block', transform: getCharTransform(0, i) }}
+              style={{ display: 'inline-block', animationDelay: `${i * 0.07}s`, transform: getCharTransform(0, i) }}
             >
               {char}
             </span>
@@ -105,10 +77,10 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
           {lastName.split('').map((char, i) => (
             <span
               key={`last-${i}`}
-              className={`char text-7xl md:text-9xl lg:text-[11rem] font-normal tracking-wide ${
+              className={`char char-assemble text-7xl md:text-9xl lg:text-[11rem] font-normal tracking-wide ${
                 emeraldIndices.last.includes(i) ? 'char-emerald' : 'text-foreground'
               }`}
-              style={{ display: 'inline-block', transform: getCharTransform(1, i) }}
+              style={{ display: 'inline-block', animationDelay: `${i * 0.07}s`, transform: getCharTransform(1, i) }}
             >
               {char}
             </span>
@@ -120,7 +92,7 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
       <div className="mt-8 overflow-hidden">
         <p
           className="animate-fade-in font-body text-sm tracking-[0.5em] text-foreground/50"
-          style={{ animationDelay: '1.5s' }}
+          style={{ animationDelay: '0.55s', animationFillMode: 'both' }}
         >
           CREATIVE DEVELOPER
         </p>
@@ -129,7 +101,7 @@ const HeroSection = ({ scrollProgress }: HeroSectionProps) => {
       {/* Scroll indicator */}
       <div
         className="absolute bottom-12 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3"
-        style={{ opacity: Math.max(0, 1 - scrollProgress * 5) }}
+        style={{ opacity: Math.max(0, 1 - heroProgress * 2.5) }}
       >
         <span className="font-body text-xs tracking-[0.3em] text-muted-foreground/50">
           SCROLL

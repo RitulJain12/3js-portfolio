@@ -21,26 +21,29 @@ const ContactSection = () => {
     Instagram: "https://www.instagram.com/ritul05_?utm_source=qr&igsh=MThidzY1d2M3dTM4bg%3D%3D"
   }
   useEffect(() => {
-    if (formRef.current && sectionRef.current) {
-      const elements = formRef.current.querySelectorAll('.form-element');
+    const ctx = gsap.context(() => {
+      const elements = formRef.current?.querySelectorAll('.form-element');
+      if (!elements?.length) return;
 
       gsap.fromTo(
         elements,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 32 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          stagger: 0.1,
+          duration: 0.7,
+          stagger: 0.08,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 60%',
+            start: 'top 80%',
             toggleActions: 'play none none none',
           },
         }
       );
-    }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   const handleSubmit = async (e: FormEvent) => {

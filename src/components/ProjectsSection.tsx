@@ -10,7 +10,8 @@ const projects = [
       id: 1,
       title: 'Astra Ai',
       description: 'Astraa AI is a smart, retrieval-augmented AI system designed to deliver accurate, context-aware, and reliable responses by combining the power of LangChain, RAG (Retrieval-Augmented Generation), and a Vector Database.',
-      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-05-01%20184158.png',
+      image: '/astra.png',
+      previewUrl: 'https://gpt-advnc-kdmx.onrender.com/',
       tags: ['React', 'Node', 'Langchain','Express','Langgraph','Langsmith'],
       year: '2024',
       liveDemo: 'https://gpt-advnc-kdmx.onrender.com',
@@ -20,7 +21,8 @@ const projects = [
       id: 2,
       title: 'EvGenee',
       description: 'EvGenee is an intelligent EV slot booking platform featuring an integrated AI voice agent. It allows users to book high-speed charging slots hands-free while speaking with the AI, save their fleet details, check station availability on their own, and dispatch emergency roadside SOS when stranded.',
-      image: 'https://api.microlink.io/?url=https://evgenee-hackathon.onrender.com/&screenshot=true&meta=false&embed=screenshot.url',
+      image: '/evgenee.png',
+      previewUrl: 'https://evgenee-hackathon.onrender.com/',
       tags: ['React', 'Node', 'AI Voice', 'Express', 'MongoDB'],
       year: '2024',
       liveDemo: 'https://evgenee-hackathon.onrender.com/',
@@ -28,20 +30,10 @@ const projects = [
     },
     {
       id: 3,
-      title: 'NeatCode',
-      description: 'NeatCode is a scalable LeetCode-style coding platform enhanced with AI assistance, designed to help developers practice DSA, solve problems efficiently, and get intelligent guidance, hints, and explanations in real time all in a fast, production ready environment.',
-      image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20190655.png',
-      tags: ['React', 'Node', 'Langchain','Express','Mongodb','judge 0'],
-      liveDemo: "#microservice",
-      year: '2024'
-    },
-    {
-      id: 4,
       title: 'Unir',
       description: 'Unir is a scalable LinkedIn-style professional networking application enhanced with AI-driven features that help users grow their careers smarter and faster. It enables professionals to connect, share posts, showcase skills, and leverage AI to improve visibility, resumes, and engagement.',
       image: 'https://ik.imagekit.io/rituls12/Screenshot%202026-01-24%20191000.png',
       tags: ['React', 'Node', 'Langchain','Express','Mongodb', 'Langgraph','Spring','webRtc','socket'],
-      liveDemo: "#microservice",
       year: '2026'
     },
 
@@ -49,10 +41,11 @@ const projects = [
       id: 5,
       title: 'OnCart',
       description: 'OnCart is a comprehensive e-commerce platform built on a robust microservices architecture using RabbitMQ and an API Gateway. It features dedicated services for Auth, Orders, Cart, Payments, Notifications, and a Seller Dashboard. Enhanced with an \'AI Buddy\', it allows users to add products to their cart using natural language processing (NLP), recommends products based on user dwell time, and offers a premium subscription for discovering the lowest deals.',
-      image: 'https://api.microlink.io/?url=https://onkart-microservice.onrender.com&screenshot=true&meta=false&embed=screenshot.url',
+      image: '/onkart.png',
+      imageWidth: 1279,
+      imageHeight: 631,
       tags: ['Microservices', 'RabbitMQ', 'API Gateway', 'NLP', 'React', 'Node'],
       year: '2025',
-      liveDemo: 'https://onkart-microservice.onrender.com',
       githubLink: 'https://github.com/RitulJain12/Microservice_mega'
     }
   ];
@@ -67,8 +60,9 @@ const ProjectsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (sectionRef.current) {
-      const projectCards = sectionRef.current.querySelectorAll('.project-card');
+    const ctx = gsap.context(() => {
+      const projectCards = sectionRef.current?.querySelectorAll('.project-card');
+      if (!projectCards?.length) return;
 
       projectCards.forEach((card, i) => {
         gsap.fromTo(
@@ -93,7 +87,9 @@ const ProjectsSection = () => {
           }
         );
       });
-    }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -126,19 +122,35 @@ const ProjectsSection = () => {
                 }`}
               >
                 {/* Image */}
-                <div className="relative flex-1 overflow-hidden rounded-sm group">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                <div className="relative min-w-0 flex-1">
+                  {'previewUrl' in project && project.previewUrl ? (
+                    <div className="live-preview relative aspect-[16/10] w-full overflow-hidden rounded-sm">
+                      <iframe
+                        src={project.previewUrl}
+                        title={`${project.title} live preview`}
+                        loading="lazy"
+                        scrolling="no"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="pointer-events-none absolute inset-0 h-full w-full border-0"
+                      />
+                    </div>
+                  ) : (
+                    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-sm">
                       <img
                         src={project.image}
-                        alt={project.title}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt={`${project.title} screenshot`}
+                        width={'imageWidth' in project ? project.imageWidth : 1600}
+                        height={'imageHeight' in project ? project.imageHeight : 900}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-black/20" />
                     </div>
-                    </div>
+                  )}
+                </div>
 
                 {/* Content */}
-                <div className="flex flex-1 flex-col justify-center lg:px-12">
+                <div className="flex min-w-0 flex-1 flex-col justify-center lg:px-12">
                   <span className="font-body text-xs tracking-[0.3em] text-muted-foreground/50">
                     {project.year}
                   </span>
@@ -159,11 +171,11 @@ const ProjectsSection = () => {
                   </div>
 
                   <div className="mt-8 flex gap-4">
-                    {project.liveDemo && (
-                      <a 
-                        href={project.liveDemo} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                    {'liveDemo' in project && project.liveDemo && (
+                      <a
+                        href={project.liveDemo}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="btn-minimal"
                       >
                         Live Demo
